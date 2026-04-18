@@ -136,73 +136,35 @@ footer strong{color:#00C8FF;}
   
   <div class="dl-box">
     <p class="muted" style="margin:0 auto 2.5rem; max-width:600px;">
-      Tinggalkan e-mel Google Play anda di bawah. Kami akan mendaftarkan anda ke dalam sistem ujian dan menghantar pautan rasmi aplikasi terus ke <em>inbox</em> anda.
+      Hamba Ingat kini berada dalam fasa ujian tertutup. Sila ikuti dua langkah mudah di bawah untuk mula menggunakan aplikasi ini secara rasmi melalui Google Play Store.
     </p>
 
-    <form id="testerForm" action="https://formspree.io/f/mvzdkpbv" method="POST" style="display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; z-index: 2;">
-      
-      <input type="email" name="email" placeholder="contoh@gmail.com" required 
-             style="width: 100%; max-width: 350px; padding: 15px 20px; border-radius: 8px; border: 1px solid rgba(0,200,255,0.4); background: rgba(2, 12, 26, 0.8); color: #D8EEFF; outline: none; font-family: 'Nunito', sans-serif; text-align: center; font-size: 1rem;">
-      
-      <button type="submit" id="submitBtn" class="btn-p" style="border: none; cursor: pointer; width: 100%; max-width: 350px; justify-content: center;">
-        Hantar E-mel
-      </button>
+    <div class="tester-flow" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; position: relative; z-index: 2;">
+      <div class="step-card" style="background: rgba(0,200,255,.03); border: 1px dashed rgba(0,200,255,0.4); border-radius: 12px; padding: 2rem; width: 100%; max-width: 450px; text-align: center;">
+        <span style="color: #00C8FF; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.2em; display: block; margin-bottom: 0.5rem;">LANGKAH 1</span>
+        <h3 style="color:#5DE0FF; margin-bottom:0.5rem; font-family: 'Lora', serif;">Sertai Google Group</h3>
+        <p style="font-size:0.85rem; color:#5A84A8; margin-bottom:1.5rem;">Sertai kumpulan penguji untuk mendaftarkan akses e-mel anda ke sistem Play Store.</p>
+        <a href="https://groups.google.com/g/hamba-ingat" target="_blank" class="btn-o" style="width:100%; text-align:center; display: inline-block; padding: 12px; border: 1px solid #00C8FF; color: #00C8FF; text-decoration: none; border-radius: 8px;">Sertai Kumpulan Penguji</a>
+      </div>
 
-      <p id="formStatus" style="display: none; font-weight: bold; margin-top: 10px; font-size: 0.95rem;"></p>
-    </form>
+      <div class="step-card" style="background: rgba(0,200,255,.03); border: 1px solid rgba(0,200,255,0.15); border-radius: 12px; padding: 2rem; width: 100%; max-width: 450px; text-align: center;">
+        <span style="color: #8AAAC8; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.2em; display: block; margin-bottom: 0.5rem;">LANGKAH 2</span>
+        <h3 style="color:#5DE0FF; margin-bottom:0.5rem; font-family: 'Lora', serif;">Muat Turun Aplikasi</h3>
+        <p style="font-size:0.85rem; color:#5A84A8; margin-bottom:1.5rem;">Selepas menyertai kumpulan di atas, anda boleh terus memuat turun aplikasi melalui pautan rasmi.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.hambaingat.app" target="_blank" class="btn-p" style="width:100%; text-align:center; display: inline-block; padding: 12px; background: #00C8FF; color: #020C1A; text-decoration: none; border-radius: 8px; font-weight: bold;">Install di Google Play</a>
+      </div>
+    </div>
 
     <div class="nota" style="margin-top:2.5rem; text-align:left;">
-      <strong>⚠️ Maklumat Penting:</strong>
+      <strong>⚠️ Nota Penting:</strong>
       <ul>
-        <li>Pastikan anda memberikan e-mel yang log masuk ke Google Play Store telefon anda.</li>
-        <li>Anda akan menerima e-mel pengesahan berserta pautan muat turun dalam masa 24 jam.</li>
-        <li>Data anda selamat. Kami hanya menggunakannya untuk jemputan Google Play Console sahaja.</li>
+        <li>Gunakan akaun Gmail yang sama dengan akaun Google Play Store anda.</li>
+        <li>Pastikan anda menekan butang "Join Group" terlebih dahulu sebelum membuka pautan Langkah 2.</li>
+        <li>Sokongan anda membantu kami menyempurnakan aplikasi ini sebelum pelancaran umum.</li>
       </ul>
     </div>
   </div>
 </section>
-
-<script>
-  var form = document.getElementById("testerForm");
-  var statusMsg = document.getElementById("formStatus");
-  var btn = document.getElementById("submitBtn");
-
-  form.addEventListener("submit", function(ev) {
-    ev.preventDefault();
-    btn.innerHTML = "Menghantar..."; // Tukar teks butang sementara loading
-    btn.disabled = true;
-
-    var data = new FormData(form);
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        statusMsg.innerHTML = "Terima kasih kerana sudi menguji aplikasi kami";
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "#00FF88"; // Warna hijau
-        form.reset();
-        btn.innerHTML = "Hantar E-mel";
-        btn.disabled = false;
-      } else {
-        statusMsg.innerHTML = "Maaf, ralat berlaku. Sila cuba lagi.";
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "#FF4B4B"; // Warna merah
-        btn.innerHTML = "Hantar E-mel";
-        btn.disabled = false;
-      }
-    }).catch(error => {
-      statusMsg.innerHTML = "Maaf, ralat rangkaian. Sila cuba lagi.";
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#FF4B4B";
-      btn.innerHTML = "Hantar E-mel";
-      btn.disabled = false;
-    });
-  });
-</script>
 
 <section id="privasi">
   <div class="label">Dasar Privasi</div>
